@@ -20,7 +20,7 @@ class UdaciList
   end
 
   def delete(index)
-    if index >= @items.count
+    if index.to_i >= @items.count
       raise UdaciListErrors::IndexExceedsListSizeError, "index #{index} exceeds list size."
     end
     @items.delete_at(index - 1)

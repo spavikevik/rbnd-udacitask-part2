@@ -48,5 +48,6 @@ new_list.all
 # ------------------------
 new_list.filter("event")
 
+# Starts interactive program
 interactive = Interactive.new
 interactive.main_loop
