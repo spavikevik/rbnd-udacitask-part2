@@ -13,4 +13,5 @@ class TodoItem
     format_date(due: @due, default: "No due date") +
     format_priority(@priority)
   end
+
 end
