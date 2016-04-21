@@ -1,6 +1,7 @@
 require 'chronic'
 require 'colorize'
 # Find a third gem of your choice and add it to your project
+require 'highline'
 require 'date'
 require_relative "lib/listable"
 require_relative "lib/errors"
@@ -8,6 +9,7 @@ require_relative "lib/udacilist"
 require_relative "lib/todo"
 require_relative "lib/event"
 require_relative "lib/link"
+require_relative "lib/interactive"
 
 list = UdaciList.new(title: "Julia's Stuff")
 list.add("todo", "Buy more cat food", due: "2016-02-03", priority: "low")
@@ -35,7 +37,7 @@ new_list.add("link", "http://ruby-doc.org")
 # SHOULD RETURN ERROR MESSAGES
 # ----------------------------
 # new_list.add("image", "http://ruby-doc.org") # Throws InvalidItemType error
-new_list.delete(9) # Throws an IndexExceedsListSize error
+# new_list.delete(9) # Throws an IndexExceedsListSize error
 # new_list.add("todo", "Hack some portals", priority: "super high") # throws an InvalidPriorityValue error
 
 # DISPLAY UNTITLED LIST
@@ -45,3 +47,6 @@ new_list.all
 # DEMO FILTER BY ITEM TYPE
 # ------------------------
 new_list.filter("event")
+
+interactive = Interactive.new
+interactive.main_loop
