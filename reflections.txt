@@ -11,3 +11,13 @@
 2. What was the most rewarding challenge you conquered?
 3. What two additional features did you build? Why?
 4. Where do you still have room to grow?
+
+
+
+I've spent about 1 hour working on this project and other than the standard functionality required by the task specification,
+I have added interactive functionality with a command prompt (using the gem highline) where the user can create lists and add or remove items from them,
+because a task manager application is supposed to be interactive. Implementing the interactive prompt didn't come without its hassles
+and a few bugs, but I've managed to polish it and to get it working. However, all in all, it is pretty simple, and
+I think it would be a good thing to add more features to the prompt and make sure all errors and exceptions are handled perfectly.
+Along with the interactive shell, I added a new Error to be used when there are no lists for manipulation available.
+Oh and yes, I've added functionality for reading and storing data to yaml files. :)

@@ -1,5 +1,6 @@
 require 'chronic'
 require 'colorize'
+require 'yaml'
 # Find a third gem of your choice and add it to your project
 require 'highline'
 require 'date'

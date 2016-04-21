@@ -8,16 +8,38 @@ class Interactive
   def main_loop
     puts "\n\nWelcome to interactive mode!".colorize(:red)
     while true
-      input = @cli.ask "\nPlease select an operation:\n0) Exit\n1) New list\n2) Add/remove items to a list\n3) Print a list"
+      input = @cli.ask "\nPlease select an operation:\n0) Exit\n1) New list\n2) Add/remove items to a list\n3) Print a list\n4) Read from file"
       puts "\n"
+      prompt_to_store if input.to_i == 0 && @@lists.any?
       break if input.to_i == 0
       new_list if input.to_i == 1
       edit_list if input.to_i == 2
       print_list if input.to_i == 3
+      read_from_file(get_file_name) if input.to_i == 4
     end
   end
 
   private
+
+  def prompt_to_store
+    option = @cli.ask "Store to file? Y/n"
+    store_to_file(get_file_name) if option.upcase == "Y"
+  end
+
+  def get_file_name
+    @cli.ask "Enter file name: "
+  end
+
+  def store_to_file(file_name)
+    File.open(file_name, "w") {|f| f.write(@@lists.to_yaml)}
+    puts "File written.\n"
+  end
+
+  def read_from_file(file_name)
+    parsed = YAML.load(File.open(file_name))
+    @@lists = parsed
+    puts "Data loaded.\n"
+  end
 
   def new_list
     title = @cli.ask "Please enter list title: "
