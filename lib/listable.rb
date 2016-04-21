@@ -13,10 +13,15 @@ module Listable
   end
 
   def format_priority(priority)
-    value = " ⇧".colorize(:red) if priority == "high"
-    value = " ⇨".colorize(:yellow) if priority == "medium"
-    value = " ⇩".colorize(:green) if priority == "low"
-    value = "" if !priority
-    return value
+    case priority
+    when "high"
+      return " ⇧".colorize(:red)
+    when "medium"
+      return " ⇨".colorize(:yellow)
+    when "low"
+      return " ⇩".colorize(:green)
+    else
+      ""
+    end
   end
 end

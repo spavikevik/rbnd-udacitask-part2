@@ -8,21 +8,23 @@ class UdaciList
 
   def add(type, description, options={})
     type = type.downcase
-    if !has_valid_type?(type)
-      raise UdaciListErrors::InvalidItemTypeError, "'#{type}' is not a valid item type."
-    end
     if options[:priority] && !has_valid_priority?(options[:priority])
       raise UdaciListErrors::InvalidPriorityValueError, "'#{options[:priority]}' is not a valid priority."
     end
-    @items.push TodoItem.new(description, options) if type == "todo"
-    @items.push EventItem.new(description, options) if type == "event"
-    @items.push LinkItem.new(description, options) if type == "link"
+    case type
+    when "todo"
+      @items.push TodoItem.new(description, options)
+    when "event"
+      @items.push EventItem.new(description, options)
+    when "link"
+      @items.push LinkItem.new(description, options)
+    else
+      raise UdaciListErrors::InvalidItemTypeError, "'#{type}' is not a valid item type."
+    end
   end
 
   def delete(index)
-    if index.to_i >= @items.count
-      raise UdaciListErrors::IndexExceedsListSizeError, "index #{index} exceeds list size."
-    end
+    raise UdaciListErrors::IndexExceedsListSizeError, "index #{index} exceeds list size." unless index.to_i < @items.count
     @items.delete_at(index - 1)
   end
 
@@ -31,15 +33,13 @@ class UdaciList
     puts @title
     puts "-" * @title.length
     @items.each_with_index do |item, position|
-      puts "#{position + 1}) #{item.details}"
+      puts "#{position + 1}) (#{item.class.to_s.tap {|s| s.slice!("Item")}.downcase})  #{item.details}"
     end
   end
 
   def filter(type)
     type = type.downcase
-    if !has_valid_type?(type)
-      raise UdaciListErrors::InvalidItemTypeError, "'#{type}' is not a valid item type."
-    end
+    raise UdaciListErrors::InvalidItemTypeError, "'#{type}' is not a valid item type." unless has_valid_type?(type)
     filtered_list = filter_helper(type)
     if !filtered_list
       puts "No items of type #{type}!".colorize(:red)

@@ -14,10 +14,26 @@
 
 
 
-I've spent about 1 hour working on this project and other than the standard functionality required by the task specification,
-I have added interactive functionality with a command prompt (using the gem highline) where the user can create lists and add or remove items from them,
-because a task manager application is supposed to be interactive. Implementing the interactive prompt didn't come without its hassles
-and a few bugs, but I've managed to polish it and to get it working. However, all in all, it is pretty simple, and
-I think it would be a good thing to add more features to the prompt and make sure all errors and exceptions are handled perfectly.
-Along with the interactive shell, I added a new Error to be used when there are no lists for manipulation available.
-Oh and yes, I've added functionality for reading and storing data to yaml files. :)
+I've spent about 1 hour working on this project and
+other than the standard functionality required by the task specification,
+I have added interactive functionality with a command prompt (using the gem highline)
+where the user can create lists and add or remove items from them,
+because a task manager application is supposed to be interactive.
+Implementing the interactive prompt didn't come without its hassles
+and a few bugs, but I've managed to polish it and to get it working.
+And the interactive prompt would be the most rewarding challenge right now, I would say.
+However, all in all, it is pretty simple, and
+I think it would be a good thing to add more features to the
+prompt and make sure all errors and exceptions are handled perfectly.
+Along with the interactive shell, I added a new Error to be used
+when there are no lists for manipulation available.
+Oh and yes, I've added functionality for reading
+and storing data to yaml files. :) That was also quite rewarding.
+
+So, the custom gem that I used is highline, which provides for an easy way of getting CLI input.
+
+I still need to get used to Ruby idioms and design patterns that allow for the least confusion
+and maximized happiness for everyone that may use/look at my code (and for myself, as well!)
+For example, I still have to learn what Object#tap actually is. I have used it yes (since I found it online),
+and I think I understand it, but I'm not sure if my understanding is good. I see it like this:
+you do some modification to your object using a block and return the initial (now modified) object again.
