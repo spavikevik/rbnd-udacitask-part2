@@ -25,4 +25,13 @@ class UdaciList
       puts "#{position + 1}) #{item.details}"
     end
   end
+
+  def filter(type)
+    puts "-" * (@title + type_print = " | #{type.capitalize} items").length
+    puts "#{@title}#{type_print}"
+    puts "-" * (@title + type_print).length
+    @items.select {|it| it.class.to_s == "#{type.capitalize}Item"}.each_with_index do |item, position|
+      puts "#{position + 1}) #{item.details}"
+    end
+  end
 end
