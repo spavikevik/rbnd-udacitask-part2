@@ -2,7 +2,7 @@ class UdaciList
   attr_reader :title, :items
 
   def initialize(options={})
-    @title = options[:title]
+    @title = options[:title] ? options[:title] : "Untitled List"
     @items = []
   end
 
@@ -16,7 +16,7 @@ class UdaciList
   def delete(index)
     @items.delete_at(index - 1)
   end
-  
+
   def all
     puts "-" * @title.length
     puts @title
